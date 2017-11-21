@@ -8,18 +8,46 @@
  * 		The Expression class has two primary behaviors: convertPostFix() and evaluatePostFix().
  * 
  */
-public interface Stack<T> {
+public class Stack<T> {
 	
-	// Checks if the stack is empty, will differ depending on implementation
-	boolean isEmpty();
+	// The array of items within the stack, an array implementation of the Stack ADT
+	T[] items;
 	
-	// Adds item to the stack, either top or bottom, will return true if successful
-	boolean push();
+	// integer that keeps track of how many items are in the stack and which is the next to be added
+	// to the "top" of the stack
+	int top;
 	
-	// removes item from the stack, from same side that the stack implementation pushes to; returns item
-	// removed
-	T pop();
+	// max capacity of the stack, for our purposes this will stay constant since most expressions will not
+	// extend beyond 50 characters
+	final int MAX_CAPACITY;
 	
-	// checks what the item is at the top/bottom
-	T peek();
+	public Stack(){
+		MAX_CAPACITY = 50;
+		items = Object[MAX_CAPACITY];
+		top = -1;
+	}
+	
+	// Checks if the stack is empty, will use field top to determine it
+	public boolean isEmpty() {
+		return top == -1;
+	}
+
+	// Adds item to the stack, using the field top incremented once, since that spot should be empty
+	public void push(T item) {
+		items[top++] = item;
+	}
+
+	// removes item from the stack, at the location of top. Then decreases top and returns its current
+	// entry
+	public T pop() {
+		items[top] = null;
+		return items[top--];
+	}
+
+	// checks what the item is at the top field
+	public T peek() {
+		return items[top];
+	}
+	
 }
+
