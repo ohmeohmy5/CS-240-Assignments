@@ -23,7 +23,7 @@ public class Stack<T> {
 	
 	public Stack(){
 		MAX_CAPACITY = 50;
-		items = Object[MAX_CAPACITY];
+		items = (T[]) new Object[MAX_CAPACITY];
 		top = -1;
 	}
 	
@@ -34,18 +34,27 @@ public class Stack<T> {
 
 	// Adds item to the stack, using the field top incremented once, since that spot should be empty
 	public void push(T item) {
-		items[top++] = item;
+		if(top < 50){
+			items[++top] = item;
+		}
+		else{
+			throw new IllegalStateException("Stack is Full!");
+		}
 	}
 
-	// removes item from the stack, at the location of top. Then decreases top and returns its current
-	// entry
+	// saves the object at top, then removes the item from the stack. Then decreases top and returns its former entry at top
 	public T pop() {
+		T rObject = items[top];
 		items[top] = null;
-		return items[top--];
+		top--;
+		return rObject;
 	}
 
 	// checks what the item is at the top field
 	public T peek() {
+		if(top == -1){
+			throw new IllegalStateException("No items in the stack yet!");
+		}
 		return items[top];
 	}
 	

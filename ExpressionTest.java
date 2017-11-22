@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
  * 		Name: Ramirez, Cesar
  * 		Project: #3
@@ -9,5 +11,14 @@
  * 
  */
 public class ExpressionTest {
-	
+	public static void main(String args[]){
+		Expression example = new Expression();
+		String[] exp = new String[50];
+		exp[0] = "9";
+		exp[1] = "3";
+		exp[2] = "+";
+		exp[3] = "4";
+		exp[4] = "*";
+		System.out.println("result:" + example.evaluatePostfix(exp));
+	}
 }
