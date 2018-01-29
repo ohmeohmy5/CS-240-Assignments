@@ -1,0 +1,71 @@
+/*
+ * 		Name: Ramirez, Cesar
+ * 
+ * 
+ */
+public class DNode<T> {
+	// The data field for doubly linked Node, holding the appropriate object of whatever type is necessary
+	private T data;
+	// The link or reference to the left child of this node
+	private DNode left;
+	// The link or reference to the right child of this node
+	private DNode right;
+	
+	// constructor for doubly linked node with no parameters
+	public DNode(){
+		this(null,null,null);
+	}
+	
+	// constructor for node if no next or previous node is given, only has data with no expressed link to other nodes
+	public DNode(T anObject){
+		this(anObject,null,null);
+	}
+	
+	// constructor for doubly linked node with all parameters given: data, left child, and right child
+	public DNode(T anObject, DNode nextNode, DNode prevNode){
+		setData(anObject);
+		setLeft(nextNode);
+		setRight(prevNode);
+	}
+	
+	// accessor method for right child of this node, which should be a greater value than this node
+	public DNode getRight() {
+		return right;
+	}
+	
+	// mutator method for right child
+	public void setRight(DNode rNode) {
+		this.right = rNode;
+	}
+	
+	// accessor method for the left child, which should be a smaller value than this node
+	public DNode getLeft(){
+		return left;
+	}
+	
+	// mutator method for previous node, can change data entries with this
+	public void setLeft(DNode lNode){
+		this.left = lNode;
+	}
+	
+	// accessor method for data
+	public T getData() {
+		return data;
+	}
+	
+	// mutator method for data, allows for changing of values of the nodes in the chain
+	public void setData(T data) {
+		this.data = data;
+	}
+	
+	// method to check whether there exists a left child for this node
+	public boolean hasLeft() {
+		return left != null;
+	}
+	
+	// method to check whether there exists a right child for this node
+	public boolean hasRight() {
+		return right != null;
+	}
+
+}
