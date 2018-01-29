@@ -1,0 +1,11 @@
+
+public interface TreeInterface<T>{
+	// Recieves given entry from tree by searching it in some way
+	public T getEntry(T anEntry);
+	// Adds entry to the tree
+	public T add(T anEntry);
+	// Removes given entry from the tree
+	public T remove(T anEntry);
+	// Checks if the tree contains the given entry
+	public boolean contains(T anEntry);
+}
