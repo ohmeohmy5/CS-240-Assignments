@@ -50,5 +50,11 @@ public class Graph<E> {
 		return labels.length;
 	}
 	
+	E findLabel(E newLabel){
+		
+	}
 	
+	int shortestPath(){
+		
+	}
 }
