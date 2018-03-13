@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class InputInterface {
+	public static void main(String args[]){
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Commmand? ");
+		while(keyboard.next() != "E"){
+			String input = keyboard.next();
+			if (keyboard.next() != "Q" || keyboard.next() != "D" || keyboard.next() != "I" || keyboard.next() != "R" || keyboard.next() != "H"){
+				System.out.println("Input unrecognized, please enter a valid command.");
+				input = keyboard.next();
+			}
+			if (input == "H"){
+				System.out.println("Q Query the city information by entering the city code.");
+				System.out.println("D Find the minimum distance between two cities.");
+				System.out.println("I Insert a road by entering two city codes and distance.");
+				System.out.println("R Remove an existing road by entering two city codes.");
+				System.out.println("H Display this message.");
+				System.out.println("E Exit.");
+			}
+			if (input == "Q"){
+				
+			}
+			if (input == "D"){
+				
+			}
+			if (input == "I"){
+				
+			}
+			if (input == "R"){
+				
+			}
+		}
+	}
+}
