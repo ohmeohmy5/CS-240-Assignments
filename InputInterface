@@ -19,16 +19,16 @@ public class InputInterface {
 				System.out.println("E Exit.");
 			}
 			if (input == "Q"){
-				
+				System.out.println("City Code: ");
 			}
 			if (input == "D"){
-				
+				System.out.println("City Codes: ");
 			}
 			if (input == "I"){
-				
+				System.out.println("City Codes and Distance: ");
 			}
 			if (input == "R"){
-				
+				System.out.println("City Codes: ");
 			}
 		}
 	}
