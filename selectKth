@@ -1,0 +1,161 @@
+import java.util.Arrays;
+
+public class SelectKth {
+	public int selectKth1(int[] list, int k){
+		mergeSort(list);
+		return list[k - 1];
+	}
+	
+	public int selectKth2(int[] list, int k){
+		return quickSortIterative(list,k-1);
+	}
+
+	public int selectKth3(int[] list, int k){
+		return quickSort(list,k-1, 0, list.length - 1);
+	}
+	
+	public int selectKth4(int[] list, int k){
+		
+	}
+	
+	public void mergeSort(int[] array){
+		int size = array.length;
+		int s = size/2;
+		if(size > 1){
+			int[] half1 = Arrays.copyOfRange(array, 0, s-1);
+			int[] half2 = Arrays.copyOfRange(array, s, size-1);
+			mergeSort(half1);
+			mergeSort(half2);
+			array = merge(half1, half2);
+		}
+		
+	}
+
+	private int[] merge(int[] half1, int[] half2) {
+		int size = half1.length + half2.length;
+		int[] array = new int[size];
+		int i,h1,h2;
+		i = h1 = h2 = 0;
+		while(i < size){
+			if((h1 < half1.length) && (h2 < half2.length)){
+				if(half1[h1] < half2[h2]){
+					array[i] = half1[h1];
+					i++;
+					h1++;
+				}
+				else{
+					array[i] = half2[h2];
+					i++;
+					h2++;
+				}
+			}
+			else{
+				if(h1 >= half1.length){
+					while(h2 < half2.length){
+						array[i] = half2[h2];
+						i++;
+						h2++;
+					}
+				}
+				if(h2 >= half2.length){
+					while(h1 < half1.length){
+						array[i] = half1[h1];
+						h1++;
+						i++;
+					}
+				}
+			}
+		}
+		return array;
+	}
+	
+	public int quickSort(int[] array, int k, int low, int high) {
+		if (array == null || array.length == 0){
+			return 0;
+		}
+		if (low >= high){
+			return array[low];
+		}
+		
+		int result;
+		int middle = low + (high - low) / 2;
+		int pivot = array[middle];
+		int pivotPos = middle;
+ 
+		pivotSort(low,high,pivotPos,array,pivot);
+		
+		if (pivotPos > k){
+			result = quickSort(array, k, low, pivotPos - 1);
+		}	
+		else if (pivotPos < k){
+			result = quickSort(array, k, pivotPos + 1, high);
+		}
+		else{
+			result = array[pivotPos];
+		}
+		return result;
+}
+	public int quickSortIterative(int[] array, int k){
+		if (array == null || array.length == 0){
+			return 0;
+		}
+		
+		int size = array.length;
+		int i = 0;
+		int j = size - 1;
+		int pivotPos = j/2;
+		int pivot = array[pivotPos];
+		int[] stack = new int[j];
+		int top = -1;
+		
+		stack[++top] = i;
+		stack[++top] = j;
+		
+		while(top >= 0){
+			j = stack[top--];
+			i = stack[top--];
+			pivotPos = i + (j-i) / 2;
+			pivot = array[pivotPos];
+			
+			pivotSort(i,j,pivotPos,array,pivot);
+			
+			if(pivotPos > k){
+				stack[++top] = i;
+				stack[++top] = pivotPos - 1;
+			}
+			else if(pivotPos < k){
+				stack[++top] = pivotPos + 1;
+				stack[++top] = j;
+			}
+		}
+		return array[pivotPos];
+		}
+	
+	public void pivotSort(int low, int high, int pivotPos, int[] array, int pivot){
+		int l = low;
+		int h = high;
+		while (l <= h){
+			while (array[l] < pivot) {
+				l++;
+			}
+ 
+			while (array[h] > pivot) {
+				h--;
+			}
+ 
+			if (l <= h) {
+				if(l == pivotPos){
+					pivotPos = h;
+				}
+				if(h == pivotPos){
+					pivotPos = l;
+				}
+				int temp = array[l];
+				array[l] = array[h];
+				array[h] = temp;
+				l++;
+				h--;
+			}
+	}
+	}
+	}
