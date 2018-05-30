@@ -157,5 +157,23 @@ public class SelectKth {
 				h--;
 			}
 	}
+	public int partitionWithMM(int[] a, int n, int k) {
+		    if (a.length < 10)
+		    {
+		        return selectKth1(a,k+1);
+		    }
+
+		    for (i = 1 to n/5) do
+		        x[i] = select(S[i],3)
+
+		    M = select({x[i]}, n/10)
+
+		    partition L into L1<M, L2=M, L3>M
+		    if (k <= length(L1))
+		        return select(L1,k)
+		    else if (k > length(L1)+length(L2))
+		        return select(L3,k-length(L1)-length(L2))
+		    else return M
+	  }
 	}
 	}
