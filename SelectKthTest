@@ -1,0 +1,84 @@
+import java.util.Random;
+
+public class SelectKthTest {
+	public static void main(String args[]){
+		int[] sizes = {5000};
+		int[] array;
+		SelectKth s = new SelectKth();
+		long[] kth1Results = new long[35];
+		long[] kth2Results = new long[35];
+		long[] kth3Results = new long[35];
+		long[] kth4Results = new long[35];
+		int pointer = 0;
+		
+		
+		for(int i = 0; i < sizes.length; i++){
+			int n = sizes[i];
+			array = randomArrayGenerator(n);
+			int[] kValues = {1,n/4,n/2,3*(n/4),n};
+			
+			System.out.println("\nArray size: " + n);
+			
+			for(int j = 0; j < kValues.length; j++){
+				int k = kValues[j];
+				System.out.println("\nk value: " + k);
+				System.out.println("\nSelect-kth 1");
+				long startTime = System.nanoTime();
+				s.selectKth1(array,k);
+				long endTime = System.nanoTime();
+				System.out.println("Time Elapsed:" + (endTime - startTime) + " nanoseconds");
+				kth1Results[pointer]  = endTime - startTime;
+				
+				System.out.println("\nSelect-kth 2");
+				startTime = System.nanoTime();
+				s.selectKth2(array,k);
+				endTime = System.nanoTime();
+				System.out.println("Time Elapsed:" + (endTime - startTime) + " nanoseconds");
+				kth2Results[pointer]  = endTime - startTime;
+				
+				System.out.println("\nSelect-kth 3");
+				startTime = System.nanoTime();
+				s.selectKth3(array,k);
+				endTime = System.nanoTime();
+				System.out.println("Time Elapsed:" + (endTime - startTime) + " nanoseconds");
+				kth3Results[pointer]  = endTime - startTime;
+				
+				System.out.println("\nSelect-kth 4");
+				startTime = System.nanoTime();
+				s.selectKth4(array,k);
+				endTime = System.nanoTime();
+				System.out.println("Time Elapsed:" + (endTime - startTime) + " nanoseconds");
+				kth4Results[pointer]  = endTime - startTime;
+			}
+		}
+		
+		long kth1Average = 0;
+		long kth2Average = 0;
+		long kth3Average = 0;
+		long kth4Average = 0;
+		
+		for(int z = 0; z < kth1Results.length; z++){
+			kth1Average += kth1Results[z];
+			kth2Average += kth2Results[z];
+			kth3Average += kth3Results[z];
+			kth4Average += kth4Results[z];
+		}
+		
+		// we will then output this average value by dividing the times the method was called, being 40.
+		System.out.println("On Average, the select-kth1 algorithm took " + kth1Average/35 + " nanoseconds to complete.");
+		System.out.println("On Average, the select-kth2 algorithm took " + kth2Average/35 + " nanoseconds to complete.");
+		System.out.println("On Average, the select-kth3 algorithm took " + kth3Average/35 + " nanoseconds to complete.");
+		System.out.println("On Average, the select-kth4 algorithm took " + kth4Average/35 + " nanoseconds to complete.");
+	}
+
+	private static int[] randomArrayGenerator(int size) {
+		int[] result = new int[size];
+		Random random = new Random();
+		
+		for(int i = 0; i < size; i++){
+			result[i] = random.nextInt();
+		}
+		
+		return result;
+	}
+}
