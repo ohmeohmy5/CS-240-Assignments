@@ -1,3 +1,11 @@
+/*
+ * 		Name: Ramirez, Cesar
+ * 		Project: #2
+ * 		Due: 5/29/18
+ * 		Course: CS 331
+ * 
+ * 		Description: To implement four algorithms that find the smallest kth value in a given list. Uses different strategies to do so, which will allow us to analyze them and their efficiencies.
+ */
 import java.util.Random;
 
 public class SelectKthTest {
